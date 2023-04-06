@@ -1,0 +1,34 @@
+{% load static %}
+<html>
+  <head>
+    <link rel="stylesheet" href="{% static 'trips/style.css' %}">
+    <title>Trips from 'Graham / Conselyea'</title>
+  </head>
+  <body>
+    <div class="title">
+      <h1>10 Trips from the 'Graham Ave & Conselyea St' Station</h1>
+    </div>
+    {% if trip_list %}
+    <table class="styled-table">
+      <thead>
+        <tr>
+          <td>Start Station</td>
+          <td>End Station</td>
+          <td>Trip Duration (mins)</td>
+        </tr>
+      </thead>
+      <tbody>
+          {% for trip in trip_list %}
+            <tr>
+              <td>{{ trip.start_station_name }}</td>
+              <td>{{ trip.end_station_name }}</td>
+              <td>{{ trip.tripduration.minute }}</td>
+            </tr>
+          {% endfor %}
+      </tbody>
+    </table>
+    {% else %}
+      <h1>Your app isn't connected to Snowflake yet!</h1>
+    {% endif %}
+  </body>
+</html>
